@@ -12,7 +12,7 @@
 		<div id="brandname">
 			ML App
 		</div>
-		<h2>Caption for Image is :</h2>
+		<h2>Caption for Image</h2>
 		
 	</div>
 	</header>
@@ -21,11 +21,8 @@
 
 
 		
-	{% if prediction == 1%}
-	<h2 style="color:red;">Spam</h2>
-	{% elif prediction == 0%}
-	<h2 style="color:blue;">Not a Spam (It is a Ham)</h2>
-	{% endif %}
+	
+	{% print(prediction) %}
 
 	</div>
 

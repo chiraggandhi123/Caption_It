@@ -27,7 +27,8 @@ from keras.utils import to_categorical
 from keras.layers import Input, Dense, Dropout, Embedding, LSTM
 from keras.layers.merge import add
 import ast
-
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 app = Flask(__name__)
 
 
@@ -114,12 +115,16 @@ def predict():
 			data=(message)
 			print(type(data))
 			print(data)
-			resp = urllib.request.urlopen('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtDxjmsiiWy3vwehEZmaO87eV5im3cWExevGPE0lr3cSbewFj5Vw')
-			imag = np.asarray(bytearray(resp.read()), dtype="uint8")
-			imag = cv2.imdecode(imag, cv2.COLOR_BGR2RGB)
+			print(message)
+			path_image='./Image'
+			urllib.request.urlretrieve(data,path_image)
+			print('Image downloaded and saved at %s',path_image)
+			#resp = urllib.request.urlopen(data)
+			#imag = np.asarray(bytearray(resp.read()), dtype="uint8")
+			#imag = cv2.imdecode(imag, cv2.COLOR_BGR2RGB)
 			#imgi=encode_image(image)
-			path_image='./Images/hey.png'
-			cv2.imwrite(path_image,imag)
+			
+			#cv2.imwrite(path_image,imag)
 			f_v=encode_image(path_image)
 			f_v=f_v.reshape((1,2048))
 
@@ -140,7 +145,7 @@ def predict():
 			final_caption = final_caption[1:-1]
 			final_caption = ' '.join(final_caption)
 				
-			print(final_caption)
+			
 	return render_template('result.html',prediction = final_caption)
 
 
