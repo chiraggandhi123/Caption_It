@@ -36,6 +36,7 @@ app = Flask(__name__)
 def home():
 	return render_template('home.html')
 @app.route('/predict',methods=['POST'])
+
 def predict():
 	
 	#Model Architecture
@@ -114,9 +115,10 @@ def predict():
 			message = request.form['message']
 			data=(message)
 			print(type(data))
-			print(data)
+			#print(data)
 			print(message)
-			path_image='./Image'
+			path_image='./Image.jpg'
+			image_full_path='/home/chirag/Desktop/PROJECT/Image-Captioning/Flask_web_app'+path_image
 			urllib.request.urlretrieve(data,path_image)
 			print('Image downloaded and saved at %s',path_image)
 			#resp = urllib.request.urlopen(data)
@@ -146,7 +148,7 @@ def predict():
 			final_caption = ' '.join(final_caption)
 				
 			
-	return render_template('result.html',prediction = final_caption)
+	return render_template('result.html',prediction = final_caption,img_data=image_full_path)
 
 
 
