@@ -5,9 +5,21 @@ Caption Your Images using LSTM and Resnet50 and Flask REST Api
 
 git clone https://github.com/chiraggandhi123/Caption_it
 
+### Create a virtualenv
+
+virtualenv venv
+
+### Activate the virtualenv
+
+source venv/bin/activate
+
+### Install the dependencies
+
+pip3 install -r requirements.txt
+
 ### Run Flask App
 
-python app.py
+python3 app.py
 
 The web app will be served over 127.0.0.1:5000
 
